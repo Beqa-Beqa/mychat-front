@@ -3,9 +3,15 @@ import { AuthInput } from "../../Components";
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 
-const Login = () => {
+const Login = (props: {
+  setAuthPage: React.Dispatch<React.SetStateAction<"login" | "register">>
+}) => {
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
+
+  const submitHnadler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
 
   return (
     <main className="d-flex flex-column align-items-center justify-content-center gap-3">
@@ -16,7 +22,7 @@ const Login = () => {
           </div>
           <h1 className="fw-bold important-text">Welcome</h1>
         </div>
-        <form className="w-100 mt-3 d-flex flex-column align-items-center gap-3">
+        <form onSubmit={submitHnadler} className="w-100 mt-3 d-flex flex-column align-items-center gap-3">
           <AuthInput
             onChange={(e: React.FormEvent<HTMLInputElement>) => setEmail(e.currentTarget.value)} 
             placeholder="Email address" 
@@ -32,7 +38,10 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <span>Don't have an account? <strong role="button">Sign Up</strong></span>
+      <span>
+        Don't have an account?
+        <strong className="ms-1" onClick={() => props.setAuthPage("register")} role="button">Sign Up</strong>
+      </span>
     </main>
   );
 };

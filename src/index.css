@@ -56,4 +56,5 @@ table {
 	--accent-color: #6785ff;
 	--thin-border-color: #718096;
 	--base-transition-duration: 0.2s;
+	--error: #ED4337;
 }
