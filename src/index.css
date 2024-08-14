@@ -46,3 +46,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* Variables */
+
+:root {
+	--body-bg-primary: #1d1f2b;
+	--over-body-bg-primary: #252837;
+	--text-primary: #fbffff;
+	--accent-color: #6785ff;
+	--thin-border-color: #718096;
+	--base-transition-duration: 0.2s;
+}

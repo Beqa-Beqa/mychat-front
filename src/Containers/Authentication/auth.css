@@ -1,0 +1,42 @@
+main {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--body-bg-primary) !important;
+}
+
+main span {
+  color: var(--thin-border-color);
+}
+
+main strong {
+  color: var(--accent-color);
+}
+
+.main {
+  background-color: var(--over-body-bg-primary);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 480px;
+}
+
+.auth-user-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.auth-user-icon-wrapper {
+  background-color: var(--accent-color);
+  width: 45px;
+  height: 45px;
+}
+
+.important-text {
+  color: var(--accent-color);
+  letter-spacing: 0.025em;
+}
+
+.submit-button {
+  max-width: 410px;
+  background-color: var(--accent-color);
+  color: var(--text-primary);
+  height: 40px;
+}

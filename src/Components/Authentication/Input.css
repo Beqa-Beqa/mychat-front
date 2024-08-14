@@ -1,0 +1,20 @@
+.auth-input {
+  outline: none;
+  color: var(--text-primary);
+  border: 1px solid var(--thin-border-color);
+  max-width: 410px;
+}
+
+.icon-wrapper {
+  color: var(--thin-border-color);
+  width: 20px;
+  height: 100%;
+}
+
+.icon-wrapper .hoverable {
+  transition: var(--base-transition-duration);
+}
+
+.icon-wrapper .hoverable:hover {
+  color: var(--text-primary);
+}
