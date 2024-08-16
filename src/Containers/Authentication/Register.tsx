@@ -7,11 +7,13 @@ const Register = (props: {
   setAuthPage: React.Dispatch<React.SetStateAction<"login" | "register">>
 }) => {
   // Input data holders
+  const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [passIsMatch, setPassIsMatch] = useState<boolean>(false);
 
   // Error states for inputs
+  const [usernameError, setUsernameError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passError, setPassError] = useState<boolean>(false);
 
@@ -20,10 +22,12 @@ const Register = (props: {
     e.preventDefault();
 
     // Regexes for email and password
+    const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{3,19}$/igm;
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
 
     // If email or password does not match given regex, set error states accordingly
+    if(!usernameRegex.test(username)) setUsernameError(true);
     if(!emailRegex.test(email)) setEmailError(true);
     if(!passRegex.test(pass)) setPassError(true);
   }
@@ -40,6 +44,15 @@ const Register = (props: {
         <form onSubmit={submitHnadler} className="w-100 mt-3 d-flex flex-column align-items-center gap-3">
           <AuthInput
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
+              usernameError && setUsernameError(false);
+              setUsername(e.currentTarget.value);
+            }} 
+            placeholder="Username" 
+            type="text"
+            error={usernameError ? "Username should be 4 - 20 characters long, no whitespace, only alphabets, digits, - or . without starting or ending with ." :""}
+          />
+          <AuthInput
+            onChange={(e: React.FormEvent<HTMLInputElement>) => {
               emailError && setEmailError(false);
               setEmail(e.currentTarget.value);
             }} 
@@ -49,7 +62,7 @@ const Register = (props: {
           />
           <AuthInput 
             onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              passError && setPassError(true);
+              passError && setPassError(false);
               setPass(e.currentTarget.value);
             }}
             placeholder="Password" 

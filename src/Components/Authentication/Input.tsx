@@ -1,12 +1,12 @@
 import "./Input.css";
 import { FaEnvelope } from "react-icons/fa6";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
 import { TbLock } from "react-icons/tb";
 import { useState } from "react";
 
 const Input = (props: {
   placeholder: string,
-  type: "email" | "password",
+  type: "email" | "password" | "text",
   onChange: (e: React.FormEvent<HTMLInputElement>) => void,
   error?: string
 }) => {
@@ -19,7 +19,7 @@ const Input = (props: {
       {props.error && <span className="input-error mb-1">{props.error}</span>}
       <div style={{height: 35}} className="d-flex justify-content-center position-relative">
         <div style={{left: 15}} className="icon-wrapper d-flex align-items-center justify-content-center position-absolute">
-          {type === "email" ? <FaEnvelope /> : <TbLock />}
+          {type === "email" ? <FaEnvelope /> : type === "password" ? <TbLock /> : type === "text" ? <FaUser /> : null}
         </div>
         <input
           onChange={onChange}
